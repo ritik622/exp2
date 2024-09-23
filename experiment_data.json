@@ -1,0 +1,32 @@
+[
+  {
+    "empId": "2",
+    "empName": "Jatin",
+    "department": "MCA",
+    "monthlySalary": 340000,
+    "dutyLeave": 1,
+    "annualSalary": 3944000,
+    "doj": "2024-08-01",
+    "_id": "66b996920e5ebe03795c0746"
+  },
+  {
+    "empId": "1",
+    "empName": "Ritik",
+    "department": "MCA",
+    "monthlySalary": 230000,
+    "dutyLeave": 2,
+    "annualSalary": 2576000,
+    "doj": "2023-02-01",
+    "_id": "66b9983083c11a4ca095172b"
+  },
+  {
+    "empId": "3",
+    "empName": "Rohan",
+    "department": "BCA",
+    "monthlySalary": 100000,
+    "dutyLeave": 3,
+    "annualSalary": 1080000,
+    "doj": "2023-04-02",
+    "_id": "66b9985383c11a4ca095172c"
+  }
+]

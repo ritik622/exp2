@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px; /* Adjusted width */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Form</h1>
+    <form action="/submit" method="POST">
+        <label for="empId">Employee ID:</label>
+        <input type="text" id="empId" name="empId" required>
+        <label for="empName">Employee Name:</label>
+        <input type="text" id="empName" name="empName" required>
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required>
+        <label for="monthlySalary">Monthly Salary:</label>
+        <input type="number" id="monthlySalary" name="monthlySalary" required>
+        <label for="dutyLeave">Duty Leave (in days):</label>
+        <input type="number" id="dutyLeave" name="dutyLeave" required>
+        <label for="adjustedMonthlySalary">Adjusted Monthly Salary:</label>
+        <input type="number" id="adjustedMonthlySalary" name="adjustedMonthlySalary" readonly>
+        <label for="annualSalary">Annual Salary:</label>
+        <input type="number" id="annualSalary" name="annualSalary" readonly>
+        <label for="doj">Date of Joining:</label>
+        <input type="date" id="doj" name="doj" required>
+        <input type="submit" value="Submit">
+    </form>
+    <a href="/employees">View Employee List</a>
+    <script>
+        const monthlySalaryInput = document.getElementById('monthlySalary');
+        const dutyLeaveInput = document.getElementById('dutyLeave');
+        const adjustedMonthlySalaryInput = document.getElementById('adjustedMonthlySalary');
+        const annualSalaryInput = document.getElementById('annualSalary');
+
+        function calculateSalaries() {
+            const monthlySalary = parseFloat(monthlySalaryInput.value);
+            const dutyLeave = parseInt(dutyLeaveInput.value);
+            const dailySalary = monthlySalary / 30; 
+            const salaryDeduction = dutyLeave * dailySalary;
+
+            if (!isNaN(monthlySalary) && !isNaN(dutyLeave)) {
+                const adjustedMonthlySalary = monthlySalary - salaryDeduction;
+                adjustedMonthlySalaryInput.value = adjustedMonthlySalary;
+                annualSalaryInput.value = adjustedMonthlySalary * 12;
+            } else {
+                adjustedMonthlySalaryInput.value = '';
+                annualSalaryInput.value = '';
+            }
+        }
+
+        monthlySalaryInput.addEventListener('input', calculateSalaries);
+        dutyLeaveInput.addEventListener('input', calculateSalaries);
+    </script>
+</body>
+</html>
